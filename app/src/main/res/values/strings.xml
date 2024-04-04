@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Brainardy</string>
+    <string name="title_activity_play">PlayActivity</string>
+    <string name="title_activity_edit">EditActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
 </resources>
