@@ -1,8 +1,11 @@
 package com.example.brainardy
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,30 +20,42 @@ import com.example.brainardy.ui.theme.BrainardyTheme
 class MainActivity : ComponentActivity() {
 
     private lateinit var dbHelper: MyDBHelper
+    private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val ownerEmail = sharedPreferences.getString("userEmail", "")
+
         dbHelper = MyDBHelper(this)
         val db = dbHelper.readableDatabase
 
-        var btnPlay = findViewById<Button>(R.id.buttonPlay)
+        val btnPlay = findViewById<Button>(R.id.buttonPlay)
         btnPlay.setOnClickListener {
             val intent = Intent(this, PlayActivity::class.java)
             startActivity(intent)
         }
 
-        var btnEdit = findViewById<Button>(R.id.buttonEditQuestions)
+        val btnEdit = findViewById<Button>(R.id.buttonEditQuestions)
         btnEdit.setOnClickListener {
-            val intent = Intent(this, EditActivity::class.java)
-            startActivity(intent)
-
+            if (ownerEmail != "") {
+                val intent = Intent(this, EditActivity::class.java)
+                startActivity(intent)
+            }
+            else
+                Toast.makeText(this, "Login to edit categories and questions", Toast.LENGTH_SHORT).show()
         }
 
-        var btnLogin = findViewById<Button>(R.id.buttonSignUp)
+        val btnLogin = findViewById<Button>(R.id.buttonSignUp)
         btnLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+        }
+
+        val btnSignOut = findViewById<Button>(R.id.buttonSignOut)
+        btnSignOut.setOnClickListener {
+            sharedPreferences.edit().putString("userEmail", "").apply()
         }
     }
 }

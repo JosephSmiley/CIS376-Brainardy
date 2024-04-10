@@ -3,4 +3,5 @@
     <string name="title_activity_play">PlayActivity</string>
     <string name="title_activity_edit">EditActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_create_category">CreateCategoryActivity</string>
 </resources>
