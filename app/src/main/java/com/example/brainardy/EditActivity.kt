@@ -29,20 +29,18 @@ class EditActivity : ComponentActivity() {
             val intent = Intent(this, CreateCategoryActivity::class.java)
             startActivity(intent)
         }
-        /*
 
         val btnEdit = findViewById<Button>(R.id.buttonEdit)
         btnEdit.setOnClickListener {
-            val intent = Intent(this, EditActivity::class.java)
+            val intent = Intent(this, EditCategoryActivity::class.java)
             startActivity(intent)
 
         }
 
         val btnDelete = findViewById<Button>(R.id.buttonDelete)
         btnDelete.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, DeleteCategoryActivity::class.java)
             startActivity(intent)
         }
-        */
     }
 }

@@ -40,6 +40,12 @@ class LoginActivity : ComponentActivity() {
 
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
+        val btnBack = findViewById<Button>(R.id.buttonBack)
+        btnBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         val buttonLogin: Button = findViewById(R.id.buttonLogin)
         buttonLogin.setOnClickListener {
             loginUser()
@@ -60,7 +66,6 @@ class LoginActivity : ComponentActivity() {
 
         if (validateCredentials(email, password)) {
             if (checkUserInDatabase(email, password)) {
-                // User exists in the database, navigate to the main activity
                 sharedPreferences.edit().putString("userEmail", email).apply()
                 val emailStr = sharedPreferences.getString("userEmail", "")
                 val intent = Intent(this, MainActivity::class.java)
@@ -76,7 +81,6 @@ class LoginActivity : ComponentActivity() {
     }
 
     private fun validateCredentials(email: String, password: String): Boolean {
-        // Add your own validation logic here if needed
         return email.isNotEmpty() && password.isNotEmpty()
     }
 
@@ -101,7 +105,6 @@ class LoginActivity : ComponentActivity() {
         val editTextReEnterPassword: EditText = view.findViewById(R.id.editTextReEnterPassword)
         val buttonConfirmSignUp: Button = view.findViewById(R.id.buttonConfirmSignUp)
 
-        // Create the popup window
         val popupWindow = PopupWindow(
             view,
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -109,7 +112,6 @@ class LoginActivity : ComponentActivity() {
             true
         )
 
-        // Dismiss the popup window when the background is clicked
         popupWindow.setBackgroundDrawable(ColorDrawable(Color.WHITE))
 
         buttonConfirmSignUp.setOnClickListener {
@@ -118,7 +120,6 @@ class LoginActivity : ComponentActivity() {
             val reEnterPassword = editTextReEnterPassword.text.toString()
 
             if (password == reEnterPassword) {
-                // Add account to the database
                 if (addAccountToDatabase(email, password)) {
                     Toast.makeText(this, "Account created successfully", Toast.LENGTH_SHORT).show()
                     popupWindow.dismiss()
@@ -130,7 +131,6 @@ class LoginActivity : ComponentActivity() {
             }
         }
 
-        // Show the popup window at the center of the screen
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
     }
 

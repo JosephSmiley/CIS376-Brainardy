@@ -18,7 +18,6 @@ class MyDBHelper(context: Context) :
         db.execSQL(Category.CREATE_TABLE_QUERY)
         db.execSQL(Question.CREATE_TABLE_QUERY)
 
-        // Sample entries
         insertSampleData(db)
 
     }
@@ -31,14 +30,12 @@ class MyDBHelper(context: Context) :
     }
 
     private fun insertSampleData(db: SQLiteDatabase) {
-        // Insert admin account
         val adminValues = ContentValues().apply {
             put(Account.COLUMN_EMAIL, "admin@example.com")
             put(Account.COLUMN_PASSWORD, "admin123")
         }
         db.insert(Account.TABLE_NAME, null, adminValues)
 
-        // Sample categories and questions
         val categories = arrayOf(
             "Science", "History", "Geography", "Literature", "Movies"
         )
@@ -100,6 +97,20 @@ class MyDBHelper(context: Context) :
             }
         }
     }
+
+    fun deleteCategoryAndQuestions(categoryId: Int) {
+        val db = writableDatabase
+        db.beginTransaction()
+        try {
+            db.delete(Question.TABLE_NAME, "${Question.COLUMN_CATEGORY_ID} = ?", arrayOf(categoryId.toString()))
+            db.delete(Category.TABLE_NAME, "${Category.COLUMN_CATEGORY_ID} = ?", arrayOf(categoryId.toString()))
+            db.setTransactionSuccessful()
+        } catch (e: Exception) {
+
+        } finally {
+            db.endTransaction()
+        }
+    }
 }
 
 object Account {
@@ -138,12 +149,14 @@ object Question {
     const val COLUMN_CATEGORY_ID = "categoryID"
     const val COLUMN_QUESTION = "question"
     const val COLUMN_ANSWER = "answer"
+    const val COLUMN_QUESTION_ID = "questionID"
 
     const val CREATE_TABLE_QUERY =
         "CREATE TABLE $TABLE_NAME (" +
                 "$COLUMN_CATEGORY_ID INTEGER," +
                 "$COLUMN_QUESTION VARCHAR," +
                 "$COLUMN_ANSWER VARCHAR," +
+                "$COLUMN_QUESTION_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "FOREIGN KEY ($COLUMN_CATEGORY_ID) REFERENCES ${Category.TABLE_NAME}(${Category.COLUMN_CATEGORY_ID}))"
 
     const val DELETE_TABLE_QUERY =
