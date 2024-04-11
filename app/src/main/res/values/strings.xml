@@ -4,4 +4,6 @@
     <string name="title_activity_edit">EditActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_create_category">CreateCategoryActivity</string>
+    <string name="title_activity_edit_category">EditCategoryActivity</string>
+    <string name="title_activity_delete_category">DeleteCategoryActivity</string>
 </resources>
