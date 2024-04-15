@@ -1,0 +1,19 @@
+When the user selects "Play Game" from home screen...
+
+It will go to the category selection screen.
+The user will select five categories from the dropdown. This will be done one at a time.
+The user can confirm his or her choice of categories by clicking on the "Confirm" button.
+The game cannot start with less than or greater than five categories. Once five categories are selected, the game will begin
+
+The screen transitions from the category selection screen to the question and answer screen, where the user will be provided questions from their choice of categories in no particular order.
+The user will fill in the answer fields with their responses. The answers are case-sensitive and must match the fields saved in the database in order for the points to be earned.
+When the user is ready with their answers, the user can select the "Submit" button at the bottom of the page.
+The answers are then compared with the database answers character-by-character and either returns a correct or incorrect response.
+The score will be calculated from the number of correct answers out of the total number of questions. 
+The score will be displayed on the screen upon calculation on a new screen (we'll call it the evaluation screen).
+The user can look at their responses and see how they align with the correct answers.
+
+The user can either play the game again (it will go back to the category selection screen) or return to the home screen.
+
+**I was only able to get the dropdown to work in the category selection screen but nothing else beyond that.**
+**Hashem and Ahmed haven't done anything with the code, yet I was able to put in some effort into the game functionality (while understanding a bit about how the Kotlin language works).**
