@@ -5,6 +5,8 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
+
 class MyDBHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -98,6 +100,85 @@ class MyDBHelper(context: Context) :
         }
     }
 
+    data class QuestionWithAnswers(
+        val question: String,
+        val correctAnswer: String,
+        val incorrectAnswers: List<String>
+    )
+
+    fun getQuestionWithAnswers(categoryId: Int): QuestionWithAnswers? {
+        val db = this.readableDatabase
+        var questionWithAnswers: QuestionWithAnswers? = null
+
+        // Fetch one random question within the category
+        val questionCursor = db.rawQuery("""
+        SELECT ${Question.COLUMN_QUESTION}, ${Question.COLUMN_ANSWER} FROM ${Question.TABLE_NAME}
+        WHERE ${Question.COLUMN_CATEGORY_ID} = ?
+        ORDER BY RANDOM() LIMIT 1
+    """.trimIndent(),
+            arrayOf(categoryId.toString())
+        )
+
+        if (questionCursor.moveToFirst()) {
+            val questionText = questionCursor.getString(questionCursor.getColumnIndexOrThrow(Question.COLUMN_QUESTION))
+            val correctAnswer = questionCursor.getString(questionCursor.getColumnIndexOrThrow(Question.COLUMN_ANSWER))
+
+            // Now we fetch three random incorrect answers from other questions within the same category
+            val incorrectAnswersCursor = db.rawQuery("""
+            SELECT ${Question.COLUMN_ANSWER} FROM ${Question.TABLE_NAME}
+            WHERE ${Question.COLUMN_CATEGORY_ID} = ? AND ${Question.COLUMN_ANSWER} != ?
+            ORDER BY RANDOM() LIMIT 3
+        """.trimIndent(),
+                arrayOf(categoryId.toString(), correctAnswer)
+            )
+
+            val incorrectAnswers = ArrayList<String>()
+            while (incorrectAnswersCursor.moveToNext()) {
+                incorrectAnswers.add(incorrectAnswersCursor.getString(incorrectAnswersCursor.getColumnIndexOrThrow(Question.COLUMN_ANSWER)))
+            }
+            incorrectAnswersCursor.close()
+
+            // Combine the correct answer with the incorrect ones and shuffle them
+            val allAnswers = (incorrectAnswers + correctAnswer).shuffled()
+
+            questionWithAnswers = QuestionWithAnswers(questionText, correctAnswer, incorrectAnswers)
+        }
+        questionCursor.close()
+
+        return questionWithAnswers
+    }
+
+    fun getCategoryNameById(categoryId: Int): String? {
+        val db = this.readableDatabase // or use writableDatabase if readableDatabase is not available
+        var categoryName: String? = null
+        val projection = arrayOf(Category.COLUMN_CATEGORY_NAME) // The columns to return
+        val selection = "${Category.COLUMN_CATEGORY_ID} = ?" // The columns for the WHERE clause
+        val selectionArgs = arrayOf(categoryId.toString()) // The values for the WHERE clause
+
+        val cursor: Cursor? = db.query(
+            Category.TABLE_NAME,   // The table to query
+            projection,            // The array of columns to return, passing null will return all columns.
+            selection,             // The columns for the WHERE clause
+            selectionArgs,         // The values for the WHERE clause
+            null,       // Don't group the rows
+            null,        // Don't filter by row groups
+            null         // The sort order
+        )
+
+        try {
+            if (cursor != null && cursor.moveToFirst()) {
+                // If the cursor is not null and it can navigate to the first item, retrieve the category name.
+                categoryName = cursor.getString(cursor.getColumnIndexOrThrow(Category.COLUMN_CATEGORY_NAME))
+            }
+        } catch (e: Exception) {
+            // Log the exception if there is one. Make sure to import android.util.Log for this.
+            Log.e("getCategoryNameById", "Error reading from database", e)
+        } finally {
+            cursor?.close() // Make sure to close the cursor
+        }
+
+        return categoryName // Will return null if not found or in case of an error
+    }
     fun deleteCategoryAndQuestions(categoryId: Int) {
         val db = writableDatabase
         db.beginTransaction()

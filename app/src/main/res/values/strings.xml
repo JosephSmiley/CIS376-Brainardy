@@ -6,4 +6,7 @@
     <string name="title_activity_create_category">CreateCategoryActivity</string>
     <string name="title_activity_edit_category">EditCategoryActivity</string>
     <string name="title_activity_delete_category">DeleteCategoryActivity</string>
+    <string name="title_activity_play_categories">PlayCategoriesActivity</string>
+    <string name="title_activity_play_game">PlayGameActivity</string>
+    <string name="title_activity_result">ResultActivity</string>
 </resources>
