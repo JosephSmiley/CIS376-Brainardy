@@ -56,6 +56,8 @@ class MainActivity : ComponentActivity() {
         val btnSignOut = findViewById<Button>(R.id.buttonSignOut)
         btnSignOut.setOnClickListener {
             sharedPreferences.edit().putString("userEmail", "").apply()
+            finish();
+            startActivity(getIntent());
         }
     }
 }

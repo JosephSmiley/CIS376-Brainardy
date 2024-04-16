@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/categoryName1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="CATEGORY_NAME_1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/categoryName2"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/categoryName2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="CATEGORY_NAME_2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/categoryName1"
+        app:layout_constraintEnd_toStartOf="@id/categoryName3"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/categoryName3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="CATEGORY_NAME_3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/categoryName2"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/buttonCat1_100"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="100"
+        app:layout_constraintTop_toBottomOf="@id/categoryName1"
+        app:layout_constraintStart_toStartOf="@id/categoryName1"
+        app:layout_constraintEnd_toEndOf="@id/categoryName1"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat1_200"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="200"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCat1_100"
+        app:layout_constraintStart_toStartOf="@+id/buttonCat1_100"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCat1_100"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat1_300"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="300"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCat1_200"
+        app:layout_constraintStart_toStartOf="@+id/buttonCat1_200"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCat1_200"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat1_400"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="400"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCat1_300"
+        app:layout_constraintStart_toStartOf="@+id/buttonCat1_300"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCat1_300"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat1_500"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="500"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCat1_400"
+        app:layout_constraintStart_toStartOf="@+id/buttonCat1_400"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCat1_400"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat2_100"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="100"
+        app:layout_constraintTop_toBottomOf="@id/categoryName2"
+        app:layout_constraintStart_toStartOf="@id/categoryName2"
+        app:layout_constraintEnd_toEndOf="@id/categoryName2"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat2_200"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="200"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCat2_100"
+        app:layout_constraintStart_toStartOf="@+id/buttonCat2_100"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCat2_100"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat2_300"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="300"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCat2_200"
+        app:layout_constraintStart_toStartOf="@+id/buttonCat2_200"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCat2_200"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat2_400"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="400"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCat2_300"
+        app:layout_constraintStart_toStartOf="@+id/buttonCat2_300"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCat2_300"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat2_500"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="500"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCat2_400"
+        app:layout_constraintStart_toStartOf="@+id/buttonCat2_400"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCat2_400"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat3_100"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="100"
+        app:layout_constraintTop_toBottomOf="@id/categoryName3"
+        app:layout_constraintStart_toStartOf="@id/categoryName3"
+        app:layout_constraintEnd_toEndOf="@id/categoryName3"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat3_200"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="200"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCat3_100"
+        app:layout_constraintStart_toStartOf="@+id/buttonCat3_100"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCat3_100"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat3_300"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="300"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCat3_200"
+        app:layout_constraintStart_toStartOf="@+id/buttonCat3_200"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCat3_200"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat3_400"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="400"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCat3_300"
+        app:layout_constraintStart_toStartOf="@+id/buttonCat3_300"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCat3_300"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/buttonCat3_500"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="500"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCat3_400"
+        app:layout_constraintStart_toStartOf="@+id/buttonCat3_400"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCat3_400"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
